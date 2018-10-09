@@ -5,10 +5,10 @@ int main() {
 	int year;
 	cout << "Enter a year: " << "\n";
 	cin >> year;
-	if (year%400) {
+	if (year%400==0) {
 		cout << "This is a leap year!" << "\n";
 	}
-	else if (year%4 and not year%100) {
+	else if (year%4==0 and year%100!=0) {
 		cout << "This is a leap year!!" << "\n";
 	}
 	else
