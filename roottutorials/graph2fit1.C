@@ -1,0 +1,134 @@
+{
+//=========Macro generated from canvas: c1/A Simple Graph Example
+//=========  (Thu Oct 18 16:12:23 2018) by ROOT version5.34/30
+   TCanvas *c1 = new TCanvas("c1", "A Simple Graph Example",77,88,700,590);
+   c1->Range(0.2253142,-0.01556746,3.973968,11.998);
+   c1->SetFillColor(42);
+   c1->SetBorderMode(0);
+   c1->SetBorderSize(2);
+   c1->SetGridx();
+   c1->SetGridy();
+   c1->SetLeftMargin(0.07327586);
+   c1->SetRightMargin(0.1264368);
+   c1->SetFrameFillColor(9);
+   c1->SetFrameBorderMode(-1);
+   c1->SetFrameBorderSize(12);
+   c1->SetFrameFillColor(9);
+   c1->SetFrameBorderMode(-1);
+   c1->SetFrameBorderSize(12);
+   
+   TGraph *graph = new TGraph(22);
+   graph->SetName("Graph0");
+   graph->SetTitle("a simple graph");
+   graph->SetFillColor(1);
+   graph->SetLineColor(2);
+   graph->SetLineWidth(5);
+   graph->SetMarkerColor(8);
+   graph->SetMarkerStyle(3);
+   graph->SetMarkerSize(2.1);
+   graph->SetPoint(0,0.004488351569,1.98669319);
+   graph->SetPoint(1,0.1014362879,2.976574862);
+   graph->SetPoint(2,0.2037702208,3.921461913);
+   graph->SetPoint(3,0.2953321607,4.821354342);
+   graph->SetPoint(4,0.3976660935,5.67625215);
+   graph->SetPoint(5,0.4946140299,6.463658025);
+   graph->SetPoint(6,0.5915619663,7.183571969);
+   graph->SetPoint(7,0.6938958991,7.85849129);
+   graph->SetPoint(8,0.7962298319,8.443421369);
+   graph->SetPoint(9,0.8931777683,8.938362205);
+   graph->SetPoint(10,0.9955117012,9.343313799);
+   graph->SetPoint(11,1.097845634,9.658276149);
+   graph->SetPoint(12,1.19479357,9.883249256);
+   graph->SetPoint(13,1.297127503,9.99573581);
+   graph->SetPoint(14,1.399461436,9.99573581);
+   graph->SetPoint(15,1.496409372,9.928243877);
+   graph->SetPoint(16,1.593357309,9.770762702);
+   graph->SetPoint(17,1.695691242,9.478297663);
+   graph->SetPoint(18,1.792639178,9.118340691);
+   graph->SetPoint(19,1.894973111,8.645897166);
+   graph->SetPoint(20,2.498204715,6.013711811);
+   graph->SetPoint(21,2.999102386,4.011451156);
+   
+   TH1F *Graph_Graph_Graph_Graph121 = new TH1F("Graph_Graph_Graph_Graph121","a simple graph",100,0.5,3.5);
+   Graph_Graph_Graph_Graph121->SetMinimum(1.185789);
+   Graph_Graph_Graph_Graph121->SetMaximum(10.79664);
+   Graph_Graph_Graph_Graph121->SetDirectory(0);
+   Graph_Graph_Graph_Graph121->SetStats(0);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#000099");
+   Graph_Graph_Graph_Graph121->SetLineColor(ci);
+   Graph_Graph_Graph_Graph121->GetXaxis()->SetTitle("X title");
+   Graph_Graph_Graph_Graph121->GetXaxis()->CenterTitle(true);
+   Graph_Graph_Graph_Graph121->GetXaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_Graph121->GetXaxis()->SetLabelSize(0.035);
+   Graph_Graph_Graph_Graph121->GetXaxis()->SetTitleSize(0.035);
+   Graph_Graph_Graph_Graph121->GetXaxis()->SetTitleFont(42);
+   Graph_Graph_Graph_Graph121->GetYaxis()->SetTitle("Y title");
+   Graph_Graph_Graph_Graph121->GetYaxis()->CenterTitle(true);
+   Graph_Graph_Graph_Graph121->GetYaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_Graph121->GetYaxis()->SetLabelSize(0.035);
+   Graph_Graph_Graph_Graph121->GetYaxis()->SetTitleSize(0.035);
+   Graph_Graph_Graph_Graph121->GetYaxis()->SetTitleFont(42);
+   Graph_Graph_Graph_Graph121->GetZaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_Graph121->GetZaxis()->SetLabelSize(0.035);
+   Graph_Graph_Graph_Graph121->GetZaxis()->SetTitleSize(0.035);
+   Graph_Graph_Graph_Graph121->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph_Graph_Graph121);
+   
+   
+   TF1 *PrevFitTMP = new TF1("PrevFitTMP","pol4",0.5,1.67);
+   PrevFitTMP->SetFillColor(19);
+   PrevFitTMP->SetFillStyle(0);
+   PrevFitTMP->SetLineColor(2);
+   PrevFitTMP->SetLineWidth(2);
+   PrevFitTMP->SetChisquare(0.0004149015);
+   PrevFitTMP->SetNDF(6);
+   PrevFitTMP->GetXaxis()->SetLabelFont(42);
+   PrevFitTMP->GetXaxis()->SetLabelSize(0.035);
+   PrevFitTMP->GetXaxis()->SetTitleSize(0.035);
+   PrevFitTMP->GetXaxis()->SetTitleFont(42);
+   PrevFitTMP->GetYaxis()->SetLabelFont(42);
+   PrevFitTMP->GetYaxis()->SetLabelSize(0.035);
+   PrevFitTMP->GetYaxis()->SetTitleSize(0.035);
+   PrevFitTMP->GetYaxis()->SetTitleFont(42);
+   PrevFitTMP->SetParameter(0,2.668218);
+   PrevFitTMP->SetParError(0,0.4752332);
+   PrevFitTMP->SetParLimits(0,0,0);
+   PrevFitTMP->SetParameter(1,7.204956);
+   PrevFitTMP->SetParError(1,1.929436);
+   PrevFitTMP->SetParLimits(1,0,0);
+   PrevFitTMP->SetParameter(2,3.094657);
+   PrevFitTMP->SetParError(2,2.827436);
+   PrevFitTMP->SetParLimits(2,0,0);
+   PrevFitTMP->SetParameter(3,-4.577082);
+   PrevFitTMP->SetParError(3,1.77811);
+   PrevFitTMP->SetParLimits(3,0,0);
+   PrevFitTMP->SetParameter(4,0.9743031);
+   PrevFitTMP->SetParError(4,0.4062743);
+   PrevFitTMP->SetParLimits(4,0,0);
+   graph->GetListOfFunctions()->Add(PrevFitTMP);
+   graph->Draw("acp");
+   
+   TPaveText *pt = new TPaveText(0.3678736,0.9342405,0.6321264,0.995,"blNDC");
+   pt->SetName("title");
+   pt->SetBorderSize(0);
+   pt->SetFillColor(0);
+   pt->SetFillStyle(0);
+   pt->SetTextFont(42);
+   TText *text = pt->AddText("a simple graph");
+   pt->Draw();
+   TArrow *arrow = new TArrow(1,5,0.5966068,7.183036,0.05,">");
+   arrow->SetFillColor(1);
+   arrow->SetFillStyle(1001);
+   arrow->Draw();
+   arrow = new TArrow(1,5,3,4,0.05,">");
+   arrow->SetFillColor(1);
+   arrow->SetFillStyle(1001);
+   arrow->Draw();
+   c1->Modified();
+   c1->cd();
+   c1->SetSelected(c1);
+   c1->ToggleToolBar();
+}
