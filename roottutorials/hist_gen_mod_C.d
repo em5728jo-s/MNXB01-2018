@@ -31,5 +31,6 @@
 ./hist_gen_mod_C.so: /usr/include/root/TCollection.h
 ./hist_gen_mod_C.so: /usr/include/root/TIterator.h
 ./hist_gen_mod_C.so: /usr/include/root/Math/ParamFunctor.h
+./hist_gen_mod_C.so: /usr/include/root/TStyle.h /usr/include/root/TAttText.h
 ./hist_gen_mod_C.so: /usr/include/root/cintdictversion.h /usr/include/root/RVersion.h
 hist_gen_mod_C__ROOTBUILDVERSION= 5.34/30
