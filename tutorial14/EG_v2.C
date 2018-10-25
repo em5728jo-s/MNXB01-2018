@@ -10,6 +10,7 @@
 
 // include C++ STL headers 
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -20,11 +21,11 @@ using namespace std;
 #include <TMath.h>   // math functions
 #include <TCanvas.h> // canvas object
 
-void rootfuncgenerate(Int_t nEvents, Double_t v2); // ROOT method (a bit dangerous since we don't know exactly what happens!)
+void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t v2); // ROOT method (a bit dangerous since we don't know exactly what happens!)
 
 
 //________________________________________________________________________
-void rootfuncgenerate(Int_t nEvents, Double_t v2) 
+void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t v2) 
 {
   cout << "Generating " << nEvents << " events" << endl << endl;
 
@@ -33,8 +34,20 @@ void rootfuncgenerate(Int_t nEvents, Double_t v2)
 			100, 0, 2*TMath::Pi());
 
   // Define the function we want to generate
-  TF1* sinFunc = new TF1("sinFunc", "1+2*[1]*cos(2*x)", 0, 2*TMath::Pi());
-  sinFunc->SetParameter(1, v2);
+  TF1* v2Func = new TF1("v2Func", "1+2*[1]*cos(2*x)", 0, 2*TMath::Pi());
+  v2Func->SetParameter(1, v2);
+        
+  Double_t phi[nTracks]; //array to store phi angles
+  
+  //generate nTracks phi angles
+  for (Int_t nt = 0; nt < nTracks; nt++) {
+	  
+	  //Fill the array
+	  phi[nt] = v2Func->GetRandom();
+  }
+  
+  //Open output file
+  ofstream file("phi_dist.dat");
   
   // make a loop for the number of events
   for(Int_t n = 0; n < nEvents; n++) {
@@ -42,10 +55,20 @@ void rootfuncgenerate(Int_t nEvents, Double_t v2)
     if((n+1)%1000==0)
       cout << "event " << n+1 << endl;
     
-    // fill our sin dist histogram
-    hPhi->Fill(sinFunc->GetRandom()); 
+    file << "Event " << n << endl;
+    file << "nTracks " << nTracks << endl;
+    
+	//Fill out hPhi hist
+	for (Int_t i = 0; i < nTracks; i++) {
+	  
+	  hPhi->Fill(phi[i]);
+	  file << i << " : " << phi[i] << endl;
+	}
   }
   
+  //close file
+  file.close();
+
   // Set ROOT drawing styles
   gStyle->SetOptStat(1111);
   gStyle->SetOptFit(1111);
