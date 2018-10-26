@@ -20,22 +20,20 @@ using namespace std;
 #include <TStyle.h>  // style object
 #include <TMath.h>   // math functions
 #include <TCanvas.h> // canvas object
+#include <TRandom.h>
+#include "MyClasses.C"
 
-void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t v2); // ROOT method (a bit dangerous since we don't know exactly what happens!)
+void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t sigmaTracks, Double_t v2, Double_t sigmaV2); // ROOT method (a bit dangerous since we don't know exactly what happens!)
 
 
 //________________________________________________________________________
-void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t v2) 
-{
+void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t sigmaTracks, Double_t v2, Double_t sigmaV2) 
+{ 
   cout << "Generating " << nEvents << " events" << endl << endl;
 
   // create histogram that we will fill with random values
   TH1D* hPhi = new TH1D("hPhi", "ROOT func generated v2 distribution; phi; Counts", 
 			100, 0, 2*TMath::Pi());
-
-  // Define the function we want to generate
-  TF1* v2Func = new TF1("v2Func", "1+2*[1]*cos(2*x)", 0, 2*TMath::Pi());
-  v2Func->SetParameter(1, v2);
         
   Double_t phi[nTracks]; //array to store phi angles
 
@@ -45,8 +43,15 @@ void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t v2)
   // make a loop for the number of events
   for(Int_t n = 0; n < nEvents; n++) {
     
+    Int_t nTracksEvents = gRandom->Gaus(nTracks,sigmaTracks);
+    Double_t v2Events = gRandom->Gaus(v2,sigmaV2);
+    
+	// Define the function we want to generate
+	TF1* v2Func = new TF1("v2Func", "1+2*[1]*cos(2*x)", 0, 2*TMath::Pi());
+	v2Func->SetParameter(1, v2Events);
+    
     //generate nTracks phi angles
-	for (Int_t nt = 0; nt < nTracks; nt++) {
+	for (Int_t nt = 0; nt < nTracksEvents; nt++) {
 	  
 		//Fill the array
 		phi[nt] = v2Func->GetRandom();

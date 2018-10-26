@@ -20,6 +20,10 @@ void analyze_v2_2particle(){
 	// open input file
 	ifstream file("phi_dist.dat");
 	Int_t eventNo = -1;
+	
+	// create histogram that we will fill with phi-values
+	TH1D* hPhi = new TH1D("hPhi", "; phi; Counts", 
+			  100, 0, 2*TMath::Pi());
 
 	while(file >> helpString >> eventNo) {
 		cout << "\nReading event : " << eventNo << endl;
@@ -36,6 +40,7 @@ void analyze_v2_2particle(){
 
 			// Read back the phi values
 			file >> trackNo >> helpString >> phi[nt];
+			hPhi->Fill(phi[nt]);
 		}
 		// Here we want to analyze the phi values in the next exercise
 		
@@ -62,17 +67,16 @@ void analyze_v2_2particle(){
 		Double_t eventavg2 = (1./(nTracks*(nTracks-1)))*sum_cos2_diff;
 		Double_t eventavg2Q = (pow(sum_cos2,2)+pow(sum_sin2,2)-nTracks)/(nTracks*(nTracks-1));
 		cout << "<2> = " << eventavg2 << endl;
-		cout << "sum_cos2_diff = " << sum_cos2_diff << endl;
 		cout << "Q: <2> = " << eventavg2Q << endl;
 		if (eventavg2 < 0) {
-			cout << "<2> negative, no v2." << endl;
+			cout << "<2> (for this event) negative, no real v2." << endl;
 		}
 		else {
 			cout << "v2 (for this event) = " << sqrt(eventavg2) << endl;
 		}
 		
 		if (eventavg2Q < 0){
-			cout << "Q: <2> negative, no v2." << endl;
+			cout << "Q: <2> (for this event) negative, no real v2." << endl;
 		}
 		
 		else {
@@ -88,9 +92,12 @@ void analyze_v2_2particle(){
 		
 	}
 
-	cout << "v2 (average of 10 events) = " << eventavg2A/nEvents << endl;
-	cout << "Q: v2 (average of 10 events) = " << eventavg2QA/nEvents << endl;
+	cout << "\nv2 (average of all events) = " << eventavg2A/nEvents << endl;
+	cout << "Q: v2 (average of all events) = " << eventavg2QA/nEvents << endl;
 	
 	file.close();
-
+	
+	TCanvas* c1 = new TCanvas("c1", "v2 canvas", 900, 600);
+	hPhi->SetMinimum(0);
+	hPhi->Draw();
 }
