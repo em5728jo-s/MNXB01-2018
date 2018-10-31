@@ -21,6 +21,7 @@ using namespace std;
 #include <TMath.h>   // math functions
 #include <TCanvas.h> // canvas object
 #include <TRandom.h>
+#include <TTree.h>
 #include "MyClasses.C"
 
 void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t sigmaTracks, Double_t v2, Double_t sigmaV2); // ROOT method (a bit dangerous since we don't know exactly what happens!)
@@ -40,8 +41,19 @@ void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t sigmaTracks, Double
   //Open output file
   ofstream file("phi_dist.dat");
   
+  // Create the outfile and data structure before the loop
+  TFile* file = new TFile("phi_dist.root", "RECREATE");
+  TTree* tree = new TTree("tree", "Output tree");
+  MyEvent* event = new MyEvent();
+  tree->Branch("event", &event);
+  TClonesArray* trackArray = new TClonesArray("MyTrack", 1000);
+  tree->Branch("track", "TClonesArray", &trackArray);
+  Int_t nT = 0;
+  
   // make a loop for the number of events
   for(Int_t n = 0; n < nEvents; n++) {
+    
+    
     
     Int_t nTracksEvents = gRandom->Gaus(nTracks,sigmaTracks);
     Double_t v2Events = gRandom->Gaus(v2,sigmaV2);

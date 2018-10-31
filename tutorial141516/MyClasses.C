@@ -10,7 +10,6 @@ class MyEvent : public TObject {
 		Int_t nTracks;
 		Double_t fV2;
 		MyEvent();
-		~MyEvent();
 
 		ClassDef(MyEvent, 1); // Help class
 };
